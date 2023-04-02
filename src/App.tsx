@@ -3,7 +3,7 @@ import { Typography, AppBar, Card, CardActions, CardMedia,CssBaseline,Grid,Toolb
 
 import SimpleBottomNavigation from "./simpleBottomNavigation";
 import DroneCard from "./droneCard";
-//import DroneCardList from "./droneCardList";
+//import DroneCardList from "./DroneListCard";
 import MissionCardList from "./missionListCard";
 import MissionCard from "./missionCard";
 
@@ -14,7 +14,7 @@ const App: React.FC = () => {
             <main>
             <div>
                 <DroneCard/>  
-                
+                <MissionCard/>
             </div>
             </main>
           <div>
