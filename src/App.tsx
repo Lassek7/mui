@@ -3,11 +3,11 @@ import { Typography, AppBar, Box, Card, CardActions, CardMedia,CssBaseline,Grid,
 
 import SimpleBottomNavigation from "./simpleBottomNavigation";
 import DroneCard from "./droneCard";
-import DroneListCard from "./droneListCard";
-import MissionCardList from "./missionListCard";
 import MissionCard from "./missionCard";
 import CompletedMap from "./completedMap";
 import BottomSheet from "./bottomSheet";
+
+
 
 const App: React.FC = () => {
     return(
@@ -20,7 +20,8 @@ const App: React.FC = () => {
             <CssBaseline />
             <main>
                 <div>
-                    <BottomSheet/>
+                    <CompletedMap />
+                    <BottomSheet cardComponent={DroneCard}/>
                     <SimpleBottomNavigation />
                 </div>
 

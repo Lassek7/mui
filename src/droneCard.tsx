@@ -11,7 +11,7 @@ import Styles from './styles';
 
 export default function DroneCard() {
   return (
-    <Card sx={{ maxWidth: '308px',maxHeight: '159px',  border: '1px solid #3B82F7', borderRadius:"12px", backgroundColor:'#2F2B3E', color: "#BFBBBB"}}>
+    <Card sx={{ maxWidth: '340px',maxHeight: '130px',  border: '1px solid #3B82F7', borderRadius:"12px", backgroundColor:'#2F2B3E', color: "#BFBBBB"}}>
       <CardContent sx={{display: 'flex', justifyContent: 'space-between' }}>
         <Typography variant="h5" >
           HCC001
@@ -21,16 +21,13 @@ export default function DroneCard() {
         </Typography>
       </CardContent>
       <CardContent sx={{marginTop: '-30px'}}>
-        <Typography variant="h6" component="div" gutterBottom>
-          Limfjordsbroen         
-        </Typography>
         <Typography sx={{ mb: 1.5, marginTop: '-10px' }}>
           57.076423, 10.015043, 9.990
         </Typography>
       </CardContent>
-      <CardActions sx={{display: 'flex', justifyContent: 'space-between', marginTop: '-25px', marginLeft: "5px", marginRight:"5px", marginBottom: "5px"}}>
-        <CustomButton buttonStyle={Styles.menuCTA} icon={<Airplay />} text='start video'/>
-        <CustomButton buttonStyle={Styles.menuCTA} icon={<NearMe />} text='follow drone'/>
+      <CardActions sx={{display: 'flex', justifyContent: 'space-between', marginTop: '-40px', marginLeft: "16px", marginRight:"5px", marginBottom: "16px"}}>
+        <CustomButton buttonStyle={Styles.menuCTA} icon={<Airplay />} text='video'/>
+        <CustomButton buttonStyle={Styles.menuCTA} icon={<NearMe />} text='follow'/>
       </CardActions>
     </Card>
   );

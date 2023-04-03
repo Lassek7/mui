@@ -10,7 +10,7 @@ import SimpleBottomNavigation from './simpleBottomNavigation';
 
 const CompletedMap: React.FC = () => {
     return (
-      <Box sx={Styles.fullMap}>
+      <Box sx={Styles.halfMap}>
         <MapComponent />
         <Box sx={{ position: 'absolute', top: 0, left: 0 }}>
         </Box>

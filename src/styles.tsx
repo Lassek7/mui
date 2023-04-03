@@ -9,12 +9,22 @@ const menuButtonsCTA = {
 
 const fullMapStyle = {
   position: 'absolute',
-  borderRadius: '45px',
+  borderRadius: '16px',
   overflow: 'hidden',
   left: '20px',
   right: '20px',
   top: '20px',
   bottom: '110px'
+}
+
+const halfMapStyle = {
+  position: 'absolute',
+  borderRadius: '16px',
+  overflow: 'hidden',
+  left: '20px',
+  right: '20px',
+  top: '20px',
+  bottom: '300px'
 }
 
 const EmergencyStop = {
@@ -26,7 +36,8 @@ const EmergencyStop = {
 const Styles = {
   menuCTA: menuButtonsCTA,
   emergency: EmergencyStop,
-  fullMap: fullMapStyle
+  fullMap: fullMapStyle,
+  halfMap: halfMapStyle
 }
 
   export default Styles

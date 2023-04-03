@@ -6,47 +6,36 @@ import map from "lodash/map";
 import range from "lodash/range"
 
 
-export default function BottomSheet() {
+
+export default function BottomSheet(props: { cardComponent: React.ComponentType }) {
+  const { cardComponent: CardComponent } = props;
+  const droneAmount = 10;
     return (
-      <Card sx={{width: "100%", position: "absolute", bottom: "50px", borderRadius: "45px", background: "#000000"}}>
+      <Card sx={{width: "calc(100% - 32px)", height: "194px", position: "absolute", marginLeft: "16px", bottom: "88px", borderRadius: "16px", background: "#000000",  }}>
         <CardActions>
         </CardActions>
         
-        <CardActions style={{ width: "93%", overflow: "auto", marginLeft: 32, marginBottom: "40px"}}>
-          {map(range(10), index => (
-              <div style={{ display: "inline-block", marginLeft: index === 0 ? "32px" : "-40px"  }}>
-                  <Container />
-                </div>
+
+        <CardActions style={{ width: "calc(100% - 32px)", overflow: "auto", marginLeft: "16px", marginTop: "16px"}}>
+          {map(range(droneAmount), _ => (
+              <div>
+                  <Container cardComponent={CardComponent}/>
+              </div>
               ))}
         </CardActions>
         <style>{`::-webkit-scrollbar { display: none; }`}</style>
+
+
       </Card>
     );
 }
 
-const Container = () => {
-    return (
-      <div style={{width: "514px", margin: "16px -40px" }}>
-        <DroneCard />
-      </div>
-    );
-  };
+const Container = (props: { cardComponent: React.ComponentType }) => {
+  const { cardComponent: CardComponent } = props;
 
-  /*
-    return (
-          <div style={{ width: "100%", overflow: "auto", display: "flex" }}>
-            {map(range(10), _ => (
-              <Container />
-            ))}
-          </div>
-      );
-}
-
-const Container = () => {
-    return (
-      <div style={{ height: "2300px", width: "514px", margin: "16px" }}>
-            <DroneCard />
-      </div>
-    );
-
-  */
+  return (
+    <div style={{ width: "356px", height: "146px"}}> 
+      <CardComponent />
+    </div>
+  );
+};

@@ -11,7 +11,7 @@ export default function SimpleBottomNavigation() {
   return (
     <Box sx={{width: '100%', position: 'fixed', bottom: 0}}>
         <BottomNavigation
-          sx={{height: "90px", display: 'flex', justifyContent: 'space-between' , backgroundColor:'#2F2E32'}}>
+          sx={{height: "72px", display: 'flex', justifyContent: 'space-between' , backgroundColor:'#2F2E32'}}>
 
           <Box sx={{marginTop: "25px"}}>
             <BottomNavigationAction label="Recents" icon={<RestoreIcon />} showLabel sx={{ color: '#BFBBBB' }} />
