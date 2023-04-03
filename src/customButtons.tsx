@@ -13,7 +13,7 @@ interface CustomButtonProps {
 
 
 
-function button({text, icon, icon2, buttonStyle}:CustomButtonProps){
+function CustomButton({text, icon, icon2, buttonStyle}:CustomButtonProps){
     return(
         <Button size="small" variant='contained' startIcon={icon} endIcon={icon2} sx={buttonStyle}>
             <Typography>
@@ -23,5 +23,5 @@ function button({text, icon, icon2, buttonStyle}:CustomButtonProps){
     );
 }
 
-export default button;
+export default CustomButton;
 

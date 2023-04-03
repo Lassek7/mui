@@ -3,7 +3,7 @@ import { CardContent, Card, Typography, CardActions } from '@mui/material';
 
 
 
-export default function DroneCardList() {
+export default function DroneListCard() {
     return (
         <></>
     );

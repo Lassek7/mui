@@ -4,14 +4,14 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-import Button from './buttons';
+import CustomButton from './customButtons';
 import { Air, Airplay, NearMe } from '@mui/icons-material';
 import Styles from './styles';
 
 
 export default function DroneCard() {
   return (
-    <Card sx={{ maxWidth: '380px',  border: '2px solid #3B82F7', borderRadius:"12px", backgroundColor:'#2F2B3E', color: "#BFBBBB"}}>
+    <Card sx={{ maxWidth: '308px',maxHeight: '159px',  border: '1px solid #3B82F7', borderRadius:"12px", backgroundColor:'#2F2B3E', color: "#BFBBBB"}}>
       <CardContent sx={{display: 'flex', justifyContent: 'space-between' }}>
         <Typography variant="h5" >
           HCC001
@@ -29,8 +29,8 @@ export default function DroneCard() {
         </Typography>
       </CardContent>
       <CardActions sx={{display: 'flex', justifyContent: 'space-between', marginTop: '-25px', marginLeft: "5px", marginRight:"5px", marginBottom: "5px"}}>
-        <Button buttonStyle={Styles.customButtonStyles} icon={<Airplay />} text='start video'/>
-        <Button buttonStyle={Styles.customButtonStyles} icon={<NearMe />} text='follow drone'/>
+        <CustomButton buttonStyle={Styles.menuCTA} icon={<Airplay />} text='start video'/>
+        <CustomButton buttonStyle={Styles.menuCTA} icon={<NearMe />} text='follow drone'/>
       </CardActions>
     </Card>
   );
