@@ -5,11 +5,15 @@ import { LayersOutlined, WarningAmber } from '@mui/icons-material';
 import Styles from './styles';
 import ZoomControl from './zoomComponent';
 
+type CompletedMapProps = {
+  size: "full" | "half";
+};
 
 
-const CompletedMap: React.FC = () => {
-    return (
-      <Box sx={Styles.fullMap}>
+const CompletedMap: React.FC<CompletedMapProps> = ({ size }) => {
+  const mapStyle = size === "full" ? Styles.fullMap : Styles.halfMap;
+      return (
+      <Box sx={mapStyle}>
         <MapComponent />
           <Box sx={{position: "absolute", top: 10, right: 10}}>
             <IconButton  sx={Styles.emergency}>

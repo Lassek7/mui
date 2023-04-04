@@ -11,7 +11,8 @@ import Styles from './styles';
 export default function BottomSheet(props: { cardComponent: React.ComponentType }) {
   const { cardComponent: CardComponent } = props;
   const droneAmount = 10; // number should come from mock data
-    return (
+   
+  return (
       <Card sx={Styles.mainCard}>
         <CardActions sx={Styles.CardActionsInCards}>
           <Typography sx={Styles.minSizeBold}> Searching Limfjordsbroen</Typography>
