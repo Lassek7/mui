@@ -4,6 +4,7 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { HistoryOutlined, HelpOutline, CloudQueue, PolylineOutlined, FlightTakeoff } from '@mui/icons-material';
 import Styles from './styles';
+import DronesList from './dronesList';
 
 interface SimpleBottomNavigationProps {
   onDronesClick: () => void;

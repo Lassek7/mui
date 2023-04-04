@@ -7,21 +7,31 @@ import CustomContainedButton from './customContainedButtons';
 import { Airplay, NearMe } from '@mui/icons-material';
 import Styles from './styles';
 
+interface droneProps {
+  iD: string;
+  battery: number;
+  altitude: number;
+  location: {
+    lat: number;
+    lng: number;
+  };  
+}
 
-export default function DroneCard() {
-  return (
+export default function DroneCard(props: droneProps) {
+  const { iD, battery, location, altitude } = props;
+  const { lat, lng } = location;  return (
     <Card sx={Styles.droneCard}>
       <CardContent sx={{display: 'flex', justifyContent: 'space-between', marginTop: '-8px' }}>
         <Typography sx={Styles.minSizeBold} >
-          HCC01 
+          {iD} 
         </Typography>
         <Typography sx={Styles.minSizeReg}>
-          30%
+          {battery}%
         </Typography>
       </CardContent>
       <CardContent sx={{ marginTop: '-37px' }}>
         <Typography sx={Styles.minSizeReg}>
-          57.076423, 10.015043, 9.990
+          {lat}, {lng}, {altitude}
         </Typography>
       <CardActions sx={{display: 'flex', justifyContent: 'space-between'}}>
         <CustomContainedButton buttonStyle={Styles.droneCardButtons} icon={<Airplay />} text='video'/>

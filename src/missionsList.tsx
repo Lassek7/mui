@@ -8,19 +8,16 @@ import Styles from './styles';
 import { drones } from './mockData';
 
 
-export default function BottomSheet(props: { cardComponent: React.ComponentType }) {
-  const { cardComponent: CardComponent } = props;
-  const droneAmount = drones.length // number should come from mock data
-   
+export default function MissionsList() {  
   return (
       <Card sx={Styles.mainCard}>
         <CardActions sx={Styles.CardActionsInCards}>
           <Typography sx={Styles.minSizeBold}> Searching Limfjordsbroen</Typography>
         </CardActions>
         <CardActions style={Styles.CardActionsInCards}>
-          {map(range(droneAmount), _ => (
+          {map(range(10), _ => (
               <div>
-                  <Container cardComponent={CardComponent}/>
+                  <Container />
               </div>
               ))}
         </CardActions>
@@ -29,11 +26,11 @@ export default function BottomSheet(props: { cardComponent: React.ComponentType 
     );
 }
 
-const Container = (props: { cardComponent: React.ComponentType }) => {
-  const { cardComponent: CardComponent } = props;
+const Container = () => {
+
   return (
     <div style={{ width: "356px", height: "146px"}}> 
-      <CardComponent />
+      <MissionCard />
     </div>
   );
 };

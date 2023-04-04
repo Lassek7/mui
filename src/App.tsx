@@ -6,6 +6,8 @@ import MissionCard from "./missionCard";
 import CompletedMap from "./completedMap";
 import BottomSheet from "./bottomSheet";
 import Styles from "./styles";
+import DronesList from "./dronesList";
+import MissionsList from "./missionsList";
 
 type ActiveComponent = "drones" | "missions" | "weather" | "history" | "help" | null;
 
@@ -19,13 +21,13 @@ const App: React.FC = () => {
   const getCardComponent = () => {
     switch (activeComponent) {
       case "drones":
-        return DroneCard;
+        return DronesList;
       case "missions":
-        return MissionCard;
+        return MissionsList;
       case "weather":
       case "history":
       case "help":
-        return MissionCard; // Replace with the respective components when they are available
+        return MissionsList; // Replace with the respective components when they are available
       default:
         return null;
     }
@@ -39,7 +41,7 @@ const App: React.FC = () => {
       <main>
         <div>
           <CompletedMap size={activeComponent ? "half" : "full"} />
-          {CardComponent && <BottomSheet cardComponent={CardComponent} />}
+          {CardComponent && <CardComponent/>}
           <SimpleBottomNavigation
             onDronesClick={() => handleButtonClick("drones")}
             onMissionsClick={() => handleButtonClick("missions")}
@@ -54,3 +56,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+//BottomSheet cardComponent={CardComponent} 
