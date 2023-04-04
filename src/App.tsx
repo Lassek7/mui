@@ -6,22 +6,18 @@ import DroneCard from "./droneCard";
 import MissionCard from "./missionCard";
 import CompletedMap from "./completedMap";
 import BottomSheet from "./bottomSheet";
+import Styles from "./styles";
 
 
 
 const App: React.FC = () => {
     return(
         <Box
-        sx={{
-          backgroundColor: '#FFFFFF', // Replace with your desired color
-          width: '100%',
-          minHeight: '100vh', // Ensure the background color covers the full viewport height
-        }}>
+        sx={Styles.appBackground}>
             <CssBaseline />
             <main>
                 <div>
                     <CompletedMap />
-                    <BottomSheet cardComponent={DroneCard}/>
                     <SimpleBottomNavigation />
                 </div>
 

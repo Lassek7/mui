@@ -4,19 +4,19 @@ import MissionCard from './missionCard';
 import { Box, Card, Typography, CardActions } from '@mui/material';
 import map from "lodash/map";
 import range from "lodash/range"
+import Styles from './styles';
 
 
 
 export default function BottomSheet(props: { cardComponent: React.ComponentType }) {
   const { cardComponent: CardComponent } = props;
-  const droneAmount = 10;
+  const droneAmount = 10; // number should come from mock data
     return (
-      <Card sx={{width: "calc(100% - 32px)", height: "194px", position: "absolute", marginLeft: "16px", bottom: "88px", borderRadius: "16px", background: "#000000",  }}>
-        <CardActions>
+      <Card sx={Styles.mainCard}>
+        <CardActions sx={Styles.CardActionsInCards}>
+          <Typography sx={Styles.minSizeBold}> Searching Limfjordsbroen</Typography>
         </CardActions>
-        
-
-        <CardActions style={{ width: "calc(100% - 32px)", overflow: "auto", marginLeft: "16px", marginTop: "16px"}}>
+        <CardActions style={Styles.CardActionsInCards}>
           {map(range(droneAmount), _ => (
               <div>
                   <Container cardComponent={CardComponent}/>
@@ -24,15 +24,12 @@ export default function BottomSheet(props: { cardComponent: React.ComponentType 
               ))}
         </CardActions>
         <style>{`::-webkit-scrollbar { display: none; }`}</style>
-
-
       </Card>
     );
 }
 
 const Container = (props: { cardComponent: React.ComponentType }) => {
   const { cardComponent: CardComponent } = props;
-
   return (
     <div style={{ width: "356px", height: "146px"}}> 
       <CardComponent />
