@@ -13,6 +13,11 @@ type ActiveComponent = "drones" | "missions" | "weather" | "history" | "help" | 
 
 const App: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<ActiveComponent>(null);
+  const [polygonArea, setPolygonArea] = useState<number | null>(null);
+
+  const handlePolygonDrawn = (area: number) => {
+    setPolygonArea(area);
+  };
 
   const handleButtonClick = (component: ActiveComponent) => {
     setActiveComponent((prevComponent) => (prevComponent === component ? null : component));
@@ -40,7 +45,7 @@ const App: React.FC = () => {
       <CssBaseline />
       <main>
         <div>
-          <CompletedMap size={activeComponent ? "half" : "full"} />
+          <CompletedMap size={activeComponent ? "half" : "full"} onPolygonDrawn={handlePolygonDrawn} />
           {CardComponent && <CardComponent/>}
           <SimpleBottomNavigation
             onDronesClick={() => handleButtonClick("drones")}

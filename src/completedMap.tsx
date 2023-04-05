@@ -7,14 +7,15 @@ import ZoomControl from './zoomComponent';
 
 type CompletedMapProps = {
   size: "full" | "half";
+  onPolygonDrawn: (area: number) => void;
 };
 
 
-const CompletedMap: React.FC<CompletedMapProps> = ({ size }) => {
+const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn }) => {
   const mapStyle = size === "full" ? Styles.fullMap : Styles.halfMap;
       return (
-      <Box sx={mapStyle}>
-        <MapComponent />
+      <Box sx={mapStyle}  className="mapContainer">
+      <MapComponent onPolygonDrawn={onPolygonDrawn} />
           <Box sx={{position: "absolute", top: 10, right: 10}}>
             <IconButton  sx={Styles.emergency}>
                 <WarningAmber/>
