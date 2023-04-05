@@ -6,10 +6,13 @@ import area from '@turf/area';
 
 interface MapComponentProps {
   onPolygonDrawn: (area: number) => void;
+  isDrawing: boolean;
+
 }
 
 const MapComponent: React.FC<MapComponentProps> = (props) => {
   const mapContainer = useRef(null);
+  const drawRef = useRef<MapboxDraw | null>(null);
 
   useEffect(() => {
     // Set your Mapbox access token
@@ -26,10 +29,13 @@ const MapComponent: React.FC<MapComponentProps> = (props) => {
     const draw = new MapboxDraw({
       displayControlsDefault: false,
       controls: {
-        polygon: true,
+        polygon: false,
         trash: true
-      }
+      },
+      userProperties: true,
     });
+    
+    drawRef.current = draw;
 
     map.addControl(draw);
 
@@ -47,6 +53,16 @@ const MapComponent: React.FC<MapComponentProps> = (props) => {
       map.remove();
     };
   }, []);
+
+  useEffect(() => {
+    if (drawRef.current) {
+      if (props.isDrawing) {
+        drawRef.current.changeMode('draw_polygon');
+      } else {
+        drawRef.current.changeMode('simple_select');
+      }
+    }
+  }, [props.isDrawing]);
 
   return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />;
 };

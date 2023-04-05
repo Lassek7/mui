@@ -4,6 +4,7 @@ import { Box, IconButton } from '@mui/material';
 import { LayersOutlined, WarningAmber } from '@mui/icons-material';
 import Styles from './styles';
 import ZoomControl from './zoomComponent';
+import { useState } from 'react';
 
 type CompletedMapProps = {
   size: "full" | "half";
@@ -13,11 +14,17 @@ type CompletedMapProps = {
 
 const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn }) => {
   const mapStyle = size === "full" ? Styles.fullMap : Styles.halfMap;
-      return (
+  const [isDrawing, setIsDrawing] = React.useState(false);
+
+  const toggleDrawing = () => {
+    setIsDrawing(!isDrawing);
+  };
+
+    return (
       <Box sx={mapStyle}  className="mapContainer">
-      <MapComponent onPolygonDrawn={onPolygonDrawn} />
+      <MapComponent onPolygonDrawn={onPolygonDrawn} isDrawing={isDrawing}  />
           <Box sx={{position: "absolute", top: 10, right: 10}}>
-            <IconButton  sx={Styles.emergency}>
+            <IconButton  sx={Styles.emergency} onClick={toggleDrawing}>
                 <WarningAmber/>
             </IconButton>
           </Box>

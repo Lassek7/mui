@@ -1,7 +1,7 @@
 import * as React from 'react';
 import DroneCard from './droneCard';
 import MissionCard from './missionCard';
-import { Box, Card, Typography, CardActions } from '@mui/material';
+import { Box, Card, Typography, CardActions, Button } from '@mui/material';
 import map from "lodash/map";
 import range from "lodash/range"
 import Styles from './styles';
@@ -13,6 +13,8 @@ export default function MissionsList() {
       <Card sx={Styles.mainCard}>
         <CardActions sx={Styles.CardActionsInCards}>
           <Typography sx={Styles.minSizeBold}> Searching Limfjordsbroen</Typography>
+          <Button> create mission </Button>
+          <Button> delete mission </Button>
         </CardActions>
         <CardActions style={Styles.CardActionsInCards}>
           {map(range(10), _ => (
