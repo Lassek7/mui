@@ -9,12 +9,20 @@ import Styles from "./styles";
 import DronesList from "./dronesList";
 import MissionsList from "./missionsList";
 
+
+
 type ActiveComponent = "drones" | "missions" | "weather" | "history" | "help" | null;
 
 const App: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<ActiveComponent>(null);
   const [polygonArea, setPolygonArea] = useState<number | null>(null);
+  const [isDrawing, setIsDrawing] = React.useState(false);
+  const [handleDeleteSelected, setHandleDeleteSelected] = useState<(() => void) | null>(null);
 
+  
+  const toggleDrawing = () => {
+    setIsDrawing(!isDrawing);
+  };
   const handlePolygonDrawn = (area: number) => {
     setPolygonArea(area);
   };
@@ -45,14 +53,14 @@ const App: React.FC = () => {
       <CssBaseline />
       <main>
         <div>
-          <CompletedMap size={activeComponent ? "half" : "full"} onPolygonDrawn={handlePolygonDrawn}/>
-          {CardComponent && <CardComponent/>}
+          <CompletedMap size={activeComponent ? "half" : "full"} onPolygonDrawn={handlePolygonDrawn} isDrawing={isDrawing} setHandleDeleteSelected={setHandleDeleteSelected}/>
+          {CardComponent && <CardComponent toggleDrawing={toggleDrawing}/>}
           <SimpleBottomNavigation
             onDronesClick={() => handleButtonClick("drones")}
             onMissionsClick={() => handleButtonClick("missions")}
             onWeatherClick={() => handleButtonClick("weather")}
-            onHelpClick={() => handleButtonClick("help")}
-            onHistoryClick={() => handleButtonClick("history")}
+            onHelpClick={() => handleDeleteSelected && handleDeleteSelected()}
+            onHistoryClick={()=> handleButtonClick("history")}
           />
         </div>
       </main>
@@ -62,4 +70,3 @@ const App: React.FC = () => {
 
 export default App;
 
-//BottomSheet cardComponent={CardComponent} 

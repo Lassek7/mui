@@ -7,13 +7,18 @@ import range from "lodash/range"
 import Styles from './styles';
 import { drones } from './mockData';
 
+type MissionsListProps = {
+  toggleDrawing: () => void;
+}
 
-export default function MissionsList() {  
+export default function MissionsList({ toggleDrawing }: MissionsListProps) {
+
+
   return (
       <Card sx={Styles.mainCard}>
         <CardActions sx={Styles.CardActionsInCards}>
           <Typography sx={Styles.minSizeBold}> Searching Limfjordsbroen</Typography>
-          <Button> create mission </Button>
+          <Button onClick={toggleDrawing}> create mission </Button>
           <Button> delete mission </Button>
         </CardActions>
         <CardActions style={Styles.CardActionsInCards}>
