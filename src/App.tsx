@@ -45,7 +45,7 @@ const App: React.FC = () => {
       <CssBaseline />
       <main>
         <div>
-          <CompletedMap size={activeComponent ? "half" : "full"} onPolygonDrawn={handlePolygonDrawn} />
+          <CompletedMap size={activeComponent ? "half" : "full"} onPolygonDrawn={handlePolygonDrawn}/>
           {CardComponent && <CardComponent/>}
           <SimpleBottomNavigation
             onDronesClick={() => handleButtonClick("drones")}

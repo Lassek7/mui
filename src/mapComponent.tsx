@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useImperativeHandle } from 'react';
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -7,12 +7,19 @@ import area from '@turf/area';
 interface MapComponentProps {
   onPolygonDrawn: (area: number) => void;
   isDrawing: boolean;
-
 }
 
-const MapComponent: React.FC<MapComponentProps> = (props) => {
+const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
   const mapContainer = useRef(null);
   const drawRef = useRef<MapboxDraw | null>(null);
+
+  useImperativeHandle(ref, () => ({
+    handleDeleteSelected: () => {
+      if (drawRef.current) {
+        drawRef.current.deleteAll();
+      }
+    },
+  }));
 
   useEffect(() => {
     // Set your Mapbox access token
@@ -30,11 +37,12 @@ const MapComponent: React.FC<MapComponentProps> = (props) => {
       displayControlsDefault: false,
       controls: {
         polygon: false,
-        trash: true
+        trash: false
+
       },
       userProperties: true,
     });
-    
+
     drawRef.current = draw;
 
     map.addControl(draw);
@@ -48,6 +56,14 @@ const MapComponent: React.FC<MapComponentProps> = (props) => {
       }
     });
 
+
+    map.on('load', () => {
+      if (!props.isDrawing) {
+        draw.changeMode('simple_select');
+      } else {
+        draw.changeMode('draw_polygon');
+      }
+    });
     // Clean up the map when the component unmounts
     return () => {
       map.remove();
@@ -65,6 +81,6 @@ const MapComponent: React.FC<MapComponentProps> = (props) => {
   }, [props.isDrawing]);
 
   return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />;
-};
+});
 
 export default MapComponent;
