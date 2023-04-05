@@ -54,7 +54,7 @@ const App: React.FC = () => {
       <main>
         <div>
           <CompletedMap size={activeComponent ? "half" : "full"} onPolygonDrawn={handlePolygonDrawn} isDrawing={isDrawing} setHandleDeleteSelected={setHandleDeleteSelected}/>
-          {CardComponent && <CardComponent toggleDrawing={toggleDrawing}/>}
+          {CardComponent && <CardComponent toggleDrawing={toggleDrawing} handleDeleteSelected={handleDeleteSelected}/>}
           <SimpleBottomNavigation
             onDronesClick={() => handleButtonClick("drones")}
             onMissionsClick={() => handleButtonClick("missions")}

@@ -9,9 +9,10 @@ import { drones } from './mockData';
 
 type MissionsListProps = {
   toggleDrawing: () => void;
+  handleDeleteSelected: (() => void) | null;
 }
 
-export default function MissionsList({ toggleDrawing }: MissionsListProps) {
+export default function MissionsList({ toggleDrawing , handleDeleteSelected}: MissionsListProps) {
 
 
   return (
@@ -19,7 +20,7 @@ export default function MissionsList({ toggleDrawing }: MissionsListProps) {
         <CardActions sx={Styles.CardActionsInCards}>
           <Typography sx={Styles.minSizeBold}> Searching Limfjordsbroen</Typography>
           <Button onClick={toggleDrawing}> create mission </Button>
-          <Button> delete mission </Button>
+          <Button onClick={() => handleDeleteSelected && handleDeleteSelected()}> delete mission </Button>
         </CardActions>
         <CardActions style={Styles.CardActionsInCards}>
           {map(range(10), _ => (
