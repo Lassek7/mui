@@ -23,7 +23,7 @@ export default function MissionsList({ toggleDrawing , handleDeleteSelected}: Mi
           <Button onClick={() => handleDeleteSelected && handleDeleteSelected()}> delete mission </Button>
         </CardActions>
         <CardActions style={Styles.CardActionsInCards}>
-          {map(range(10), _ => (
+          {map(range(1), _ => (
               <div>
                   <Container />
               </div>

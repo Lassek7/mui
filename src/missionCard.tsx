@@ -1,16 +1,10 @@
 import * as React from 'react';
-import { Button } from '@mui/material';
+import { Button, Card, CardContent, Typography } from '@mui/material';
 
 
 export default function MissionCard() {
     return (
-    <>
-        <Button>edit</Button>
-    </>
-    );
-}
-
-/*        <Card sx={{ maxWidth: '380px',  border: '2px solid #3B82F7', borderRadius:"12px", backgroundColor:'#2F2B3E', color: "#BFBBBB"}}>
+        <Card sx={{ maxWidth: '380px',  border: '2px solid #3B82F7', borderRadius:"12px", backgroundColor:'#2F2B3E', color: "#BFBBBB"}}>
             <CardContent sx={{display: 'flex', justifyContent: 'space-between' }}>
                 <Typography variant="h5" >
                     LimfjordsBroen
@@ -19,7 +13,7 @@ export default function MissionCard() {
                     1st. priority
                 </Typography>
             </CardContent>
-       
+
             <CardContent sx={{display: 'flex', justifyContent: 'space-between', marginTop: '-40px'}}>
                 <Typography variant="h6" component="div" gutterBottom>
                     Pattern: circular         
@@ -63,4 +57,7 @@ export default function MissionCard() {
                     500m 
                 </Typography>
             </CardContent>  
-        </Card>*/
+        </Card>
+    );
+}
+
