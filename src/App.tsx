@@ -18,13 +18,22 @@ const App: React.FC = () => {
   const [polygonArea, setPolygonArea] = useState<number | null>(null);
   const [isDrawing, setIsDrawing] = React.useState(false);
   const [handleDeleteSelected, setHandleDeleteSelected] = useState<(() => void) | null>(null);
+  const [missions, setMissions] = useState<Array<any>>([]);
 
   
   const toggleDrawing = () => {
-    setIsDrawing(!isDrawing);
+    setIsDrawing(true);
   };
+
   const handlePolygonDrawn = (area: number) => {
-    setPolygonArea(area);
+    console.log('Area:', area); // Debugging
+    setMissions((prevMissions) => [
+      ...prevMissions,
+      {
+        id: prevMissions.length + 1,
+        area
+      },
+    ]);
   };
 
   const handleButtonClick = (component: ActiveComponent) => {
@@ -53,8 +62,8 @@ const App: React.FC = () => {
       <CssBaseline />
       <main>
         <div>
-          <CompletedMap size={activeComponent ? "half" : "full"} onPolygonDrawn={handlePolygonDrawn} isDrawing={isDrawing} setHandleDeleteSelected={setHandleDeleteSelected}/>
-          {CardComponent && <CardComponent toggleDrawing={toggleDrawing} handleDeleteSelected={handleDeleteSelected}/>}
+          <CompletedMap size={activeComponent ? "half" : "full"} onPolygonDrawn={handlePolygonDrawn} isDrawing={isDrawing} setHandleDeleteSelected={setHandleDeleteSelected} onDrawingComplete={() => setIsDrawing(false)}/>
+          {CardComponent && <CardComponent toggleDrawing={toggleDrawing} handleDeleteSelected={handleDeleteSelected} missions={missions} setMissions={setMissions}/>}
           <SimpleBottomNavigation
             onDronesClick={() => handleButtonClick("drones")}
             onMissionsClick={() => handleButtonClick("missions")}

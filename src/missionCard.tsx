@@ -1,16 +1,21 @@
 import * as React from 'react';
 import { Button, Card, CardContent, Typography } from '@mui/material';
+import area from '@turf/area';
 
+type MissionCardProps = {
+    mission: any;
 
-export default function MissionCard() {
+}
+
+export default function MissionCard({mission}: MissionCardProps) {
     return (
         <Card sx={{ maxWidth: '380px',  border: '2px solid #3B82F7', borderRadius:"12px", backgroundColor:'#2F2B3E', color: "#BFBBBB"}}>
             <CardContent sx={{display: 'flex', justifyContent: 'space-between' }}>
                 <Typography variant="h5" >
-                    LimfjordsBroen
+                    {mission.id}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
-                    1st. priority
+                    {mission.area}
                 </Typography>
             </CardContent>
 

@@ -11,10 +11,11 @@ type CompletedMapProps = {
   onPolygonDrawn: (area: number) => void;
   isDrawing: boolean;
   setHandleDeleteSelected: (fn: () => void) => void;
+  onDrawingComplete: () => void; // Add this line
 };
 
 
-const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn, isDrawing, setHandleDeleteSelected }) => {
+const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn, isDrawing, setHandleDeleteSelected, onDrawingComplete }) => {
   const mapStyle = size === "full" ? Styles.fullMap : Styles.halfMap;
   const mapComponentRef = React.useRef<any>(null);
 
@@ -28,7 +29,7 @@ const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn, isDra
 
     return (
       <Box sx={mapStyle}  className="mapContainer">
-      <MapComponent ref={mapComponentRef} onPolygonDrawn={onPolygonDrawn} isDrawing={isDrawing} />
+      <MapComponent ref={mapComponentRef} onPolygonDrawn={onPolygonDrawn} isDrawing={isDrawing} onDrawingComplete={onDrawingComplete}/>
           <Box sx={{position: "absolute", top: 10, right: 10}}>
             <IconButton  sx={Styles.emergency}>
                 <WarningAmber/>

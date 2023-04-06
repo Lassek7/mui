@@ -7,6 +7,7 @@ import area from '@turf/area';
 interface MapComponentProps {
   onPolygonDrawn: (area: number) => void;
   isDrawing: boolean;
+  onDrawingComplete: () => void; // Add this line
 }
 
 const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
@@ -16,7 +17,14 @@ const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
   useImperativeHandle(ref, () => ({
     handleDeleteSelected: () => {
       if (drawRef.current) {
-        drawRef.current.deleteAll();
+        const selectedFeatures = drawRef.current.getSelected();
+        if (selectedFeatures.features.length > 0) {
+          selectedFeatures.features.forEach((feature) => {
+            if (drawRef.current && typeof feature.id === "string") {
+              drawRef.current.delete(feature.id);
+            }
+          });
+        }
       }
     },
   }));
@@ -50,9 +58,12 @@ const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
     map.on('draw.create', () => {
       const data = draw.getAll();
       if (data.features.length > 0) {
-        const currentFeature = data.features[0];
+        const currentFeature = data.features[data.features.length - 1]; // Get the last feature in the array
         const currentArea = area(currentFeature);
+        console.log('Current Area:', currentArea); // Debugging
         props.onPolygonDrawn(currentArea);
+        props.onDrawingComplete(); // Call the onDrawingComplete prop here
+
       }
     });
 
@@ -76,6 +87,7 @@ const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
         drawRef.current.changeMode('draw_polygon');
       } else {
         drawRef.current.changeMode('simple_select');
+
       }
     }
   }, [props.isDrawing]);
