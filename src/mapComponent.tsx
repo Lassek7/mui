@@ -8,11 +8,13 @@ interface MapComponentProps {
   onPolygonDrawn: (area: number) => void;
   isDrawing: boolean;
   onDrawingComplete: () => void; // Add this line
+  onMapLoaded: () => void;
 }
 
 const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
   const mapContainer = useRef(null);
   const drawRef = useRef<MapboxDraw | null>(null);
+  const mapRef = useRef<mapboxgl.Map | null>(null);
 
   useImperativeHandle(ref, () => ({
     handleDeleteSelected: () => {
@@ -27,6 +29,7 @@ const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
         }
       }
     },
+    map: mapRef.current,
   }));
 
   useEffect(() => {
@@ -51,6 +54,7 @@ const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
       userProperties: true,
     });
 
+    mapRef.current = map;
     drawRef.current = draw;
 
     map.addControl(draw);
@@ -69,6 +73,8 @@ const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
 
 
     map.on('load', () => {
+      props.onMapLoaded();
+      
       if (!props.isDrawing) {
         draw.changeMode('simple_select');
       } else {

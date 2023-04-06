@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import MapComponent from './mapComponent';
 import { Box, IconButton } from '@mui/material';
 import { LayersOutlined, WarningAmber } from '@mui/icons-material';
@@ -18,6 +18,7 @@ type CompletedMapProps = {
 const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn, isDrawing, setHandleDeleteSelected, onDrawingComplete }) => {
   const mapStyle = size === "full" ? Styles.fullMap : Styles.halfMap;
   const mapComponentRef = React.useRef<any>(null);
+  const [isMapLoaded, setIsMapLoaded] = useState<boolean>(false);
 
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn, isDra
 
     return (
       <Box sx={mapStyle}  className="mapContainer">
-      <MapComponent ref={mapComponentRef} onPolygonDrawn={onPolygonDrawn} isDrawing={isDrawing} onDrawingComplete={onDrawingComplete}/>
+      <MapComponent ref={mapComponentRef} onPolygonDrawn={onPolygonDrawn} isDrawing={isDrawing} onDrawingComplete={onDrawingComplete} onMapLoaded={() => setIsMapLoaded(true)}/>
           <Box sx={{position: "absolute", top: 10, right: 10}}>
             <IconButton  sx={Styles.emergency}>
                 <WarningAmber/>
@@ -37,8 +38,9 @@ const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn, isDra
           </Box>
           <Box sx={{position: "absolute", bottom: 10, right: 10, display: 'flex', flexDirection: 'column', gap: 2}}>
             <Box sx={{display: 'flex', flexDirection: 'column'}}>
-              <ZoomControl />           
-            </Box>  
+            {isMapLoaded && <ZoomControl map={mapComponentRef.current?.map} />}
+
+          </Box>  
               <IconButton  sx={Styles.layerBtn}>
                 <LayersOutlined />
               </IconButton>          

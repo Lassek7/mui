@@ -3,14 +3,32 @@ import { Box, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Styles from './styles';
+import { Map as MapboxMap } from 'mapbox-gl';
+import {useEffect, useState} from 'react';
 
-const ZoomControl = () => {
-    const handleZoomIn = () => {
-      // Implement your zoom in functionality here
+interface ZoomControlProps {
+  map?: MapboxMap | null;
+}
+
+const ZoomControl: React.FC<ZoomControlProps> = ({ map }) => {
+  const [currentMap, setCurrentMap] = useState<MapboxMap | null>(map || null);
+  
+  useEffect(() => {
+    if (map !== undefined) {
+      setCurrentMap(map);
+    }  }, [map]);
+
+  
+  const handleZoomIn = () => {
+      if (currentMap){
+        currentMap.zoomIn()
+      }
     };
   
     const handleZoomOut = () => {
-      // Implement your zoom out functionality here
+        if(currentMap){
+          currentMap.zoomOut();
+        }
     };
   
     return (
