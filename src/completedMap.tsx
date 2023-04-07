@@ -12,10 +12,19 @@ type CompletedMapProps = {
   isDrawing: boolean;
   setHandleDeleteSelected: (fn: () => void) => void;
   onDrawingComplete: () => void; // Add this line
+  drones: Array<Drones>;
 };
 
+interface Drones {
+  id: string;
+  battery: number;
+  altitude: number;
+  location: {
+    lat: number;
+    lng: number;
+  };}
 
-const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn, isDrawing, setHandleDeleteSelected, onDrawingComplete }) => {
+const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn, isDrawing, setHandleDeleteSelected, onDrawingComplete, drones }) => {
   const mapStyle = size === "full" ? Styles.fullMap : Styles.halfMap;
   const mapComponentRef = React.useRef<any>(null);
   const [isMapLoaded, setIsMapLoaded] = useState<boolean>(false);
@@ -27,10 +36,9 @@ const CompletedMap: React.FC<CompletedMapProps> = ({ size, onPolygonDrawn, isDra
     }
   }, [mapComponentRef, setHandleDeleteSelected]);
 
-
     return (
       <Box sx={mapStyle}  className="mapContainer">
-      <MapComponent ref={mapComponentRef} onPolygonDrawn={onPolygonDrawn} isDrawing={isDrawing} onDrawingComplete={onDrawingComplete} onMapLoaded={() => setIsMapLoaded(true)}/>
+      <MapComponent ref={mapComponentRef} onPolygonDrawn={onPolygonDrawn} isDrawing={isDrawing} onDrawingComplete={onDrawingComplete} onMapLoaded={() => setIsMapLoaded(true)} drones={drones}/>
           <Box sx={{position: "absolute", top: 10, right: 10}}>
             <IconButton  sx={Styles.emergency}>
                 <WarningAmber/>

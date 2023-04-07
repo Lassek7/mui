@@ -5,8 +5,8 @@ export const drones = [
       battery: 85,
       signalStrength: 95,
       location: {
-        lat: 51.505,
-        lng: 9.09,
+        lat: 57.054,
+        lng: 9.923,
       },
       altitude: 120,
       speed: 10,
@@ -18,8 +18,8 @@ export const drones = [
       battery: 60,
       signalStrength: 70,
       location: {
-        lat: 50.505,
-        lng: 9.085,
+        lat: 9.923,
+        lng: 57.054,
       },
       altitude: 100,
       speed: 12,
@@ -31,7 +31,7 @@ export const drones = [
       battery: 40,
       signalStrength: 50,
       location: {
-        lat: 49.505,
+        lat: 19.505,
         lng: 9.08,
       },
       altitude: 80,
@@ -54,6 +54,19 @@ export const drones = [
     {
       id:  'HCC005',
       name: 'Drone 5',
+      battery: 10,
+      signalStrength: 10,
+      location: {
+        lat: 47.505,
+        lng: 9.07,
+      },
+      altitude: 40,
+      speed: 18,
+      minDistance: 9,
+    },
+    {
+      id:  'HCC006',
+      name: 'Drone 6',
       battery: 10,
       signalStrength: 10,
       location: {

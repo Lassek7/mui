@@ -27,41 +27,6 @@ export default function MissionCard({mission}: MissionCardProps) {
                     75% completed
                 </Typography>
             </CardContent>  
-            <CardContent sx={{display: 'flex', justifyContent: 'space-between', marginTop: '-35px'}}>
-                <Typography sx={{ mb: 1.5 }}>
-                    Speed:
-                </Typography>
-                <Typography sx={{ mb: 1.5 }}>
-                    5m/s
-                </Typography>
-            </CardContent>  
-
-            <CardContent sx={{display: 'flex', justifyContent: 'space-between', marginTop: '-50px'}}>
-                <Typography sx={{ mb: 1.5 }}>
-                    Altitude:
-                </Typography>
-                <Typography sx={{ mb: 1.5 }}>
-                    500m
-                </Typography>
-            </CardContent>  
-
-            <CardContent sx={{display: 'flex', justifyContent: 'space-between', marginTop: '-50px'}}>
-                <Typography sx={{ mb: 1.5 }}>
-                    Vertical Distance:
-                </Typography>
-                <Typography sx={{ mb: 1.5 }}>
-                    500m
-                </Typography>
-            </CardContent>  
-
-            <CardContent sx={{display: 'flex', justifyContent: 'space-between', marginTop: '-50px'}}>
-                <Typography sx={{ mb: 1.5 }}>
-                    Horizontal distance:
-                </Typography>
-                <Typography sx={{ mb: 1.5 }}>
-                    500m 
-                </Typography>
-            </CardContent>  
         </Card>
     );
 }
