@@ -15,6 +15,7 @@ interface droneProps {
     lat: number;
     lng: number;
   };  
+  velocity: number;
 }
 
 export default function DroneCard(props: droneProps) {
@@ -31,7 +32,7 @@ export default function DroneCard(props: droneProps) {
       </CardContent>
       <CardContent sx={{ marginTop: '-37px' }}>
         <Typography sx={Styles.minSizeReg}>
-          {lat}, {lng}, {altitude}
+          {parseFloat(lat.toFixed(4))}, {parseFloat(lng.toFixed(4))}, {altitude}
         </Typography>
       <CardActions sx={{display: 'flex', justifyContent: 'space-between'}}>
         <CustomContainedButton buttonStyle={Styles.droneCardButtons} icon={<Airplay />} text='video'/>

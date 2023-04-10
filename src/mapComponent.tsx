@@ -3,33 +3,34 @@ import mapboxgl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import area from '@turf/area';
-import buffer from '@turf/buffer';
 
 interface MapComponentProps {
   onPolygonDrawn: (area: number) => void;
   isDrawing: boolean;
   onDrawingComplete: () => void; // Add this line
   onMapLoaded: () => void;
-  drones: Array<Drones>;
+  allDrones: Array<allDrones>;
 }
 
-interface Drones {
+interface allDrones {
   id: string;
   battery: number;
   altitude: number;
   location: {
     lat: number;
     lng: number;
-  };}
+  };
+  velocity: number;
+}
 
   const createDroneFeatureCollections = (
-    drones: Drones[]
+    allDrones: allDrones[]
   ): { triangles: GeoJSON.FeatureCollection; circles: GeoJSON.FeatureCollection } => {
     const triangleFeatures: GeoJSON.Feature[] = [];
     const circleFeatures: GeoJSON.Feature[] = [];
   
-    drones.forEach((drone) => {
-      const { location: { lat, lng } } = drone;
+    allDrones.forEach((allDrones) => {
+      const { location: { lat, lng } } = allDrones;
   
       // Triangle feature (isosceles triangle)
       const baseWidth = 0.001;
@@ -57,7 +58,7 @@ interface Drones {
           coordinates: [triangleCoordinates],
         },
         properties: {
-          droneId: drone.id,
+          droneId: allDrones.id,
         },
       };
   
@@ -71,7 +72,7 @@ interface Drones {
           coordinates: [lng, lat],
         },
         properties: {
-          droneId: drone.id,
+          droneId: allDrones.id,
           circleRadius: 60, // Set the circle radius
         },
       };
@@ -160,7 +161,7 @@ const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
       
         // Add a new source for the drone triangles
   // Add a new source and layer for the drone triangles
-  const { triangles, circles } = createDroneFeatureCollections(props.drones);
+  const { triangles, circles } = createDroneFeatureCollections(props.allDrones);
   map.addSource('drone-triangles', {
     type: 'geojson',
     data: triangles,
@@ -216,6 +217,18 @@ const MapComponent = React.forwardRef((props: MapComponentProps, ref) => {
       }
     }
   }, [props.isDrawing]);
+  
+  useEffect(() => {
+    if (mapRef.current) {
+      const map = mapRef.current;
+      if (map.getSource('drone-triangles') && map.getSource('drone-circles')) {
+        const { triangles, circles } = createDroneFeatureCollections(props.allDrones);
+        (map.getSource('drone-triangles') as mapboxgl.GeoJSONSource).setData(triangles);
+        (map.getSource('drone-circles') as mapboxgl.GeoJSONSource).setData(circles);
+        
+      }
+    }
+  }, [props.allDrones]);
 
   return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />;
 });

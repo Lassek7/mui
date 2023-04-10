@@ -5,7 +5,6 @@ import { Box, Card, Typography, CardActions, Button } from '@mui/material';
 import map from "lodash/map";
 import range from "lodash/range"
 import Styles from './styles';
-import { drones } from './mockData';
 
 type MissionsListProps = {
   toggleDrawing: () => void;

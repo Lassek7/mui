@@ -4,20 +4,22 @@ import {Card, Typography, CardActions } from '@mui/material';
 import Styles from './styles';
 
 type DronesListProps = {
-  drones: Array<Drones>;
+  allDrones: Array<allDrones>;
 }
 
-interface Drones {
+interface allDrones {
   id: string;
   battery: number;
   altitude: number;
   location: {
     lat: number;
     lng: number;
-  };}
+  };
+  velocity: number;
+}
 
 
-export default function DronesList({ drones }: DronesListProps) {
+export default function DronesList({ allDrones }: DronesListProps) {
    
   return (
       <Card sx={Styles.mainCard}>
@@ -25,9 +27,9 @@ export default function DronesList({ drones }: DronesListProps) {
           <Typography sx={Styles.minSizeBold}> Searching Limfjordsbroen</Typography>
         </CardActions>
         <CardActions style={Styles.CardActionsInCards}>
-          {drones.map(drones => (
+          {allDrones.map(allDrones => (
             <div>
-              <DroneCard iD={drones.id} altitude={drones.altitude} battery={drones.battery} location={drones.location} />
+              <DroneCard iD={allDrones.id} altitude={allDrones.altitude} battery={allDrones.battery} location={allDrones.location} velocity={allDrones.velocity}/>
             </div>
             ))}
         </CardActions>
@@ -36,10 +38,10 @@ export default function DronesList({ drones }: DronesListProps) {
     );
 }
 
-const Container = ({ drones }: { drones: Drones }) => {
+const Container = ({ allDrones }: { allDrones: allDrones }) => {
   return (
     <div style={{ width: "356px", height: "146px"}}> 
-      <DroneCard iD={drones.id} altitude={drones.altitude} battery={drones.battery} location={drones.location}/>
+      <DroneCard iD={allDrones.id} altitude={allDrones.altitude} battery={allDrones.battery} location={allDrones.location} velocity={allDrones.velocity}/>
     </div>
   );
 };

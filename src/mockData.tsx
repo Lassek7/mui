@@ -11,7 +11,10 @@ export const drones = [
       altitude: 120,
       speed: 10,
       minDistance: 5,
+      velocity: 0.0001,
+      rotation: 0,
     },
+
     {
       id: 'HCC002',
       name: 'Drone 2',
@@ -24,7 +27,10 @@ export const drones = [
       altitude: 100,
       speed: 12,
       minDistance: 6,
+      velocity: 0.0001,
+      rotation: 0,
     },
+
     {
       id: 'HCC003',
       name: 'Drone 3',
@@ -37,7 +43,10 @@ export const drones = [
       altitude: 80,
       speed: 14,
       minDistance: 7,
+      velocity: 0.0001,
+      rotation: 0,
     },
+
     {
       id: 'HCC004',
       name: 'Drone 4',
@@ -50,7 +59,10 @@ export const drones = [
       altitude: 60,
       speed: 16,
       minDistance: 8,
+      velocity: 0.0001,
+      rotation: 0,
     },
+
     {
       id:  'HCC005',
       name: 'Drone 5',
@@ -63,7 +75,10 @@ export const drones = [
       altitude: 40,
       speed: 18,
       minDistance: 9,
+      velocity: 0.0001,
+      rotation: 0,
     },
+    
     {
       id:  'HCC006',
       name: 'Drone 6',
@@ -76,5 +91,8 @@ export const drones = [
       altitude: 40,
       speed: 18,
       minDistance: 9,
+      velocity: 0.0001,
+      rotation: 0,
     },
+
   ];
