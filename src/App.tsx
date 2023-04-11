@@ -16,7 +16,7 @@ const App: React.FC = () => {
   const [isDrawing, setIsDrawing] = React.useState(false);
   const [handleDeleteSelected, setHandleDeleteSelected] = useState<(() => void) | null>(null);
   const [missions, setMissions] = useState<Array<any>>([]);
-  const [allDrones, setAllDrones] = useState<Array<any>>(drones); // Added this line
+  const [allDrones, setAllDrones] = useState<Array<any>>(drones); 
   const [moveDroneInterval, setMoveDroneInterval] = useState<any>(null);
 
   
@@ -62,8 +62,6 @@ const App: React.FC = () => {
     }
   };
   
-  
-
   const startDroneMovement = (droneId: string, destinationLng: number, destinationLat: number) => {
     if (!moveDroneInterval) {
       const interval = setInterval(() => {
@@ -121,7 +119,7 @@ const App: React.FC = () => {
             onMissionsClick={() => handleButtonClick("missions")}
             onWeatherClick={() => handleButtonClick("weather")}
             onHelpClick={() => handleButtonClick("help")}
-            onHistoryClick={() => startDroneMovement("HCC001",9.934, 57.053)}
+            onHistoryClick={() => startDroneMovement("HCC001",9.934, 57.053)} // debugging of drone movement
           />
         </div>
       </main>
